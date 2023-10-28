@@ -29,6 +29,7 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
         [Column(TypeName = "Varchar")]
         [StringLength(250)]
         public string gorsel { get; set; }
+
         public int kategoriId { get; set; }
         public virtual Kategori kategori { get; set; }
         public ICollection<SatisHareket> satisHarekets { get; set; }

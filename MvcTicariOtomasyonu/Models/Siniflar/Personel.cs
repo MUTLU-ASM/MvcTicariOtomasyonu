@@ -26,6 +26,8 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
         public string gorsel { get; set; }
 
         public ICollection<SatisHareket> satisHarekets { get; set; }
-        public Departman departman { get; set; }
+
+        public int departmanId { get; set; }
+        public virtual Departman departman { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
         [StringLength(30)]
         public string ad { get; set; }
 
+        public bool durum { get; set; }
         public ICollection<Personel> personels { get; set; }
     }
 }
