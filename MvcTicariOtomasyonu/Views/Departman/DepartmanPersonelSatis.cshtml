@@ -1,0 +1,37 @@
+﻿@using MvcTicariOtomasyonu.Models.Siniflar
+@model List<SatisHareket>
+@{
+    ViewBag.Title = "DepartmanPersonelSatis";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2>Departman Personel Satış</h2>
+<br />
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Personel Adı: @ViewBag.dp</li>
+</ol>
+<table class="table table-condensed">
+    <tr>
+        <th>Id</th>
+        <th>Ürün</th>
+        <th>Cari</th>
+        <th>Fiyat</th>
+        <th>Adet</th>
+        <th>Toplam</th>
+        <th>Tarih</th>
+        <th>Yazdır</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.id</td>
+            <td>@x.urun.ad</td>
+            <td>@x.cariler.ad @x.cariler.soyad</td>
+            <td>@x.fiyat</td>
+            <td>@x.adet</td>
+            <td>@x.toplamTutar</td>
+            <td>@x.tarih</td>
+            <td><a href="#" class="btn btn-dark">Yazdır</a></td>
+        </tr>
+    }
+</table>

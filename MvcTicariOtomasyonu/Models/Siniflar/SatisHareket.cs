@@ -16,8 +16,12 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
         public decimal fiyat { get; set; }
         public decimal toplamTutar { get; set; }
 
-        public Urun urun { get; set; }
-        public Cariler cariler { get; set; }
-        public Personel personel { get; set; }
+        public int urunId { get; set; }
+        public int cariId { get; set; }
+        public int personelId { get; set; }
+
+        public virtual Urun urun { get; set; }
+        public virtual Cariler cariler { get; set; }
+        public virtual Personel personel { get; set; }
     }
 }
