@@ -14,11 +14,12 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
         public int id { get; set; }
 
         [Column(TypeName = "Varchar")]
-        [StringLength(30)]
+        [StringLength(30,ErrorMessage ="En fazla 30 karakter yazabilirsiniz!")]
         public string ad { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
+        [Required(ErrorMessage="Bu alanı boş geçemezsiniz!")]
         public string soyad { get; set; }
 
         [Column(TypeName = "Varchar")]
@@ -28,6 +29,8 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
         [Column(TypeName = "Varchar")]
         [StringLength(50)]
         public string mail { get; set; }
+
+        public bool durum { get; set; }
 
         public ICollection<SatisHareket> satisHarekets { get; set; }
     }

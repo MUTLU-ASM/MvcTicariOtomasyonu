@@ -1,0 +1,27 @@
+﻿@model MvcTicariOtomasyonu.Models.Siniflar.Personel
+@{
+    ViewBag.Title = "PersonelGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2>Personel Getir</h2>
+<br />
+@using (Html.BeginForm("PersonelGuncelle", "Personel", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.id)
+        @Html.LabelFor(x => x.ad, "Ad")
+        @Html.TextBoxFor(x => x.ad, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.soyad, "Soyad")
+        @Html.TextBoxFor(x => x.soyad, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.gorsel, "Görsel")
+        @Html.TextBoxFor(x => x.gorsel, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.departman, "Departman")
+        @Html.DropDownListFor(x => x.departmanId, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-warning">Güncelle</button>
+    </div>
+}
