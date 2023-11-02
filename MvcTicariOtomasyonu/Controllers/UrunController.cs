@@ -71,5 +71,10 @@ namespace MvcTicariOtomasyonu.Controllers
             return RedirectToAction("Index");
 
         }
+        public ActionResult UrunListesi()
+        {
+            var degerler=db.Uruns.ToList();
+            return View(degerler);
+        }
     }
 }
