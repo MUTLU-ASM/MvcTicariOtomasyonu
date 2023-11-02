@@ -9,7 +9,7 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
     public class Context:DbContext
     {
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<Cariler> Carilers { get; set; }
+        public DbSet<Current> currents { get; set; }
         public DbSet<Departman> Departmen { get; set; }
         public DbSet<FaturaKalem> FaturaKalems { get; set; }
         public DbSet<Faturalar> Faturalars { get; set; }

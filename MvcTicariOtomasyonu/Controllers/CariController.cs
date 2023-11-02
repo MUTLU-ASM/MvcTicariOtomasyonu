@@ -13,7 +13,7 @@ namespace MvcTicariOtomasyonu.Controllers
         Context db = new Context();
         public ActionResult Index()
         {
-            var degerler = db.Carilers.Where(x=>x.durum==true).ToList();
+            var degerler = db.currents.Where(x=>x.durum==true).ToList();
             return View(degerler);
         }
         [HttpGet]
@@ -22,32 +22,32 @@ namespace MvcTicariOtomasyonu.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult YeniCari(Cariler c)
+        public ActionResult YeniCari(Current c)
         {
             c.durum = true;
-            db.Carilers.Add(c);
+            db.currents.Add(c);
             db.SaveChanges();
             return RedirectToAction("Index");        
         }
         public ActionResult CariSil(int id)
         {
-            var deger = db.Carilers.Find(id);
+            var deger = db.currents.Find(id);
             deger.durum = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
         public ActionResult CariGetir(int id)
         {
-            var deger = db.Carilers.Find(id);
+            var deger = db.currents.Find(id);
             return View("CariGetir",deger);
         }
-        public ActionResult CariGuncelle(Cariler c)
+        public ActionResult CariGuncelle(Current c)
         {
             if (!ModelState.IsValid)
             {
                 return View("CariGetir");
             }
-            var deger = db.Carilers.Find(c.id);
+            var deger = db.currents.Find(c.id);
             deger.ad = c.ad;
             deger.soyad = c.soyad;
             deger.sehir = c.sehir;
@@ -57,8 +57,8 @@ namespace MvcTicariOtomasyonu.Controllers
         }
         public ActionResult MusteriSatis(int id)
         {
-            var degerler = db.SatisHarekets.Where(x => x.cariId == id).ToList();
-            var cr = db.Carilers.Where(x => x.id == id).Select(y => y.ad + " " + y.soyad).FirstOrDefault();
+            var degerler = db.SatisHarekets.Where(x => x.currentId == id).ToList();
+            var cr = db.currents.Where(x => x.id == id).Select(y => y.ad + " " + y.soyad).FirstOrDefault();
             ViewBag.dc = cr;
             return View(degerler);
         }

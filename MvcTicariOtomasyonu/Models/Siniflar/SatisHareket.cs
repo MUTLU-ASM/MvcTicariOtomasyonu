@@ -17,11 +17,11 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
         public decimal toplamTutar { get; set; }
 
         public int urunId { get; set; }
-        public int cariId { get; set; }
+        public int currentId { get; set; }
         public int personelId { get; set; }
 
         public virtual Urun urun { get; set; }
-        public virtual Cariler cariler { get; set; }
+        public virtual Current current { get; set; }
         public virtual Personel personel { get; set; }
     }
 }

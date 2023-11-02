@@ -1,25 +1,25 @@
-﻿using MvcTicariOtomasyonu.Models.Siniflar;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using MvcTicariOtomasyonu.Models.Siniflar;
 
 namespace MvcTicariOtomasyonu.Models.Siniflar
 {
-    public class Cariler
+    public class Current
     {
         [Key]
         public int id { get; set; }
 
         [Column(TypeName = "Varchar")]
-        [StringLength(30,ErrorMessage ="En fazla 30 karakter yazabilirsiniz!")]
+        [StringLength(30, ErrorMessage = "En fazla 30 karakter yazabilirsiniz!")]
         public string ad { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
-        [Required(ErrorMessage="Bu alanı boş geçemezsiniz!")]
+        [Required(ErrorMessage = "Bu alanı boş geçemezsiniz!")]
         public string soyad { get; set; }
 
         [Column(TypeName = "Varchar")]
