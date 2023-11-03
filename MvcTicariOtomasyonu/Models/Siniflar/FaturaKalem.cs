@@ -21,6 +21,7 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
         public int birimFiyat { get; set; }
         public int tutar { get; set; }
 
-        public Faturalar faturalar { get; set; }
+        public int faturalarId { get; set; }
+        public virtual Faturalar faturalar { get; set; }
     }
 }

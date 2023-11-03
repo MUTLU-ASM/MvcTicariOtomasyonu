@@ -1,0 +1,32 @@
+﻿@model MvcTicariOtomasyonu.Models.Siniflar.Faturalar
+@{
+    ViewBag.Title = "FaturaEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2>Yeni Fatura</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.seriNo, "Seri No")
+    @Html.TextBoxFor(x => x.seriNo, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.sıraNo, "Sıra No")
+    @Html.TextBoxFor(x => x.sıraNo, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.tarih, "Tarih")
+    @Html.TextBoxFor(x => x.tarih, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.saat, "Saat")
+    @Html.TextBoxFor(x => x.saat, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.vergiDairesi, "Vergi Dairesi")
+    @Html.TextBoxFor(x => x.vergiDairesi, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.teslimVeren, "Teslim eden")
+    @Html.TextBoxFor(x => x.teslimVeren, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.teslimAlan, "Teslim Alan")
+    @Html.TextBoxFor(x => x.teslimAlan, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+</form>

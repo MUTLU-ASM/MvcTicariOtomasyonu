@@ -25,7 +25,10 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
         [Column(TypeName = "Varchar")]
         [StringLength(60)]
         public string vergiDairesi { get; set; }
-        public DateTime saat { get; set; }
+
+        [Column(TypeName = "Char")]
+        [StringLength(5)]
+        public string saat { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
@@ -34,6 +37,8 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
         [Column(TypeName = "Varchar")]
         [StringLength(30)]
         public string teslimAlan { get; set; }
+
+        public decimal toplam { get; set; }
 
         public ICollection<FaturaKalem> faturaKalems { get; set; }
     }
