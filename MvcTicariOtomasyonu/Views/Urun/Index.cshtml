@@ -4,6 +4,15 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<style>
+    .texthidden {
+        width: 4px;
+        white-space: nowrap; /* alt satıra inme */
+        overflow: hidden; /* taşan kısımları gizle */
+        text-overflow: ellipsis; /* devamı varsa sonuna üç nokta */
+    }
+</style>
+
 <br />
 <h2>Ürün</h2>
 <br />
@@ -30,7 +39,7 @@
             <td>@x.alisFiyat</td>
             <td>@x.satisFiyat</td>
             <td>@x.kategori.ad</td>
-            <td>@x.gorsel</td>
+            <td><img style="width:25px; margin:0px 10px" src="@x.gorsel" alt="@x.ad" /></td>
             <td><a href="/Urun/UrunSil/@x.id" class="btn btn-danger">Sil</a></td>
             <td><a href="/Urun/UrunGetir/@x.id" class="btn btn-success">Güncelle</a></td>
         </tr>
