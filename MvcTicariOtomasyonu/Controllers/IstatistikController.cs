@@ -47,5 +47,48 @@ namespace MvcTicariOtomasyonu.Controllers
             ViewBag.d16 = deger16;
             return View();
         }
+        public ActionResult KolayTablolar()
+        {
+            var sorgu = from x in db.currents
+                        group x by x.sehir into g
+                        select new SinifGrup
+                        {
+                            sehir = g.Key,
+                            sayi = g.Count()
+                        };
+            return View(sorgu.ToList());
+        }
+        public PartialViewResult Partial1()
+        {
+            var sorgu = from x in db.Personels
+                        group x by x.departman.ad into g
+                        select new SinifGrup2
+                        {
+                            departman = g.Key,
+                            sayi = g.Count()
+                        };
+            return PartialView(sorgu.ToList());
+        }
+        public PartialViewResult Partial2()
+        {
+            var sorgu = db.currents.ToList();
+            return PartialView(sorgu);
+        }
+        public PartialViewResult Partial3()
+        {
+            var sorgu = db.Uruns.ToList();
+            return PartialView(sorgu);
+        }
+        public PartialViewResult Partial4()
+        {
+            var sorgu = from x in db.Uruns
+                        group x by x.marka into g
+                        select new SinifGrup3
+                        {
+                            marka = g.Key,
+                            sayi = g.Count()
+                        };
+            return PartialView(sorgu.ToList());
+        }
     }
 }

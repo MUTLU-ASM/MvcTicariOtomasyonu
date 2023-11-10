@@ -27,7 +27,7 @@ namespace MvcTicariOtomasyonu.Models.Siniflar
         public bool durum { get; set; }
 
         [Column(TypeName = "Varchar")]
-        [StringLength(250)]
+        [StringLength(500)]
         public string gorsel { get; set; }
 
         public int kategoriId { get; set; }
