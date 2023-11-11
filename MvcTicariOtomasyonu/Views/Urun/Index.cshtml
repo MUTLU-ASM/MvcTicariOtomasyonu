@@ -39,7 +39,14 @@
             <td>@x.alisFiyat</td>
             <td>@x.satisFiyat</td>
             <td>@x.kategori.ad</td>
-            <td><img style="width:25px; margin:0px 10px" src="@x.gorsel" alt="@x.ad" /></td>
+            <td>
+                <a href="@x.gorsel" class="d-block photo-item" data-fancybox="gallery">
+                    <img src="@x.gorsel" style="width:30px" />
+                    <div class="photo-text-more">
+                        <span class="icon icon-search"></span>
+                    </div>
+                </a>
+            </td>
             <td><a href="/Urun/UrunSil/@x.id" class="btn btn-danger">Sil</a></td>
             <td><a href="/Urun/UrunGetir/@x.id" class="btn btn-success">Güncelle</a></td>
         </tr>
