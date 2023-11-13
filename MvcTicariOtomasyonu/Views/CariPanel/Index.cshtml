@@ -1,0 +1,39 @@
+﻿@model MvcTicariOtomasyonu.Models.Siniflar.Current
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_CariLayout.cshtml";
+}
+<br />
+<h2>Cari Bilgi Paneli</h2>
+
+@using (Html.BeginForm("Index2", "CariPanel", FormMethod.Post))
+{
+    <table class="table table-hover">
+        <tr>
+            <td>
+                <label>Mail Adresi : @HttpContext.Current.User.Identity.Name</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBoxFor(x => x.ad, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBoxFor(x => x.soyad, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBoxFor(x => x.sehir, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBoxFor(x => x.sifre, new { @class = "form-control" })
+            </td>
+        </tr>
+    </table>
+    <button class="btn btn-warning">Bilgilerimi Güncelle</button>
+}
