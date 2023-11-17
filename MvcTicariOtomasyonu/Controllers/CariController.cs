@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcTicariOtomasyonu.Models.Siniflar;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcTicariOtomasyonu.Controllers
 {
@@ -11,9 +13,9 @@ namespace MvcTicariOtomasyonu.Controllers
     {
         // GET: Cari
         Context db = new Context();
-        public ActionResult Index()
+        public ActionResult Index(int sayfa=1)
         {
-            var degerler = db.currents.Where(x=>x.durum==true).ToList();
+            var degerler = db.currents.Where(x=>x.durum==true).ToList().ToPagedList(sayfa,8);
             return View(degerler);
         }
         [HttpGet]
