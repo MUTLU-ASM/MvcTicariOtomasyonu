@@ -43,7 +43,7 @@ namespace MvcTicariOtomasyonu.Controllers
             ViewBag.d14 = deger14;
             var deger15 = db.SatisHarekets.Count(x => x.tarih == DateTime.Today).ToString();
             ViewBag.d15 = deger15;
-            var deger16 = db.SatisHarekets.Where(x => x.tarih == DateTime.Today).Sum(y=>y.toplamTutar).ToString();
+            var deger16 = db.SatisHarekets.Where(x => x.tarih == DateTime.Today).Sum(y=>(decimal?)y.toplamTutar).ToString();
             ViewBag.d16 = deger16;
             return View();
         }
