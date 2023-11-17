@@ -45,8 +45,27 @@ namespace MvcTicariOtomasyonu.Controllers
             }
             else
             {
-                return RedirectToAction("Index","Login");
+                return RedirectToAction("Index", "Login");
 
+            }
+        }
+        [HttpGet]
+        public ActionResult AdminLogin()
+        {
+            return View();
+        }
+        public ActionResult AdminLogin(Admin a)
+        {
+            var bilgiler = db.Admins.FirstOrDefault(x => x.ad == a.ad && x.sifre == a.sifre);
+            if (bilgiler != null)
+            {
+                FormsAuthentication.SetAuthCookie(bilgiler.ad, false);
+                Session["ad"]=bilgiler.ad.ToString();
+                return RedirectToAction("Index", "Kategori");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
             }
         }
     }

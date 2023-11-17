@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcTicariOtomasyonu.Models.Siniflar;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcTicariOtomasyonu.Controllers
 {
@@ -12,9 +14,10 @@ namespace MvcTicariOtomasyonu.Controllers
         // GET: Kategori
 
         Context db = new Context();
-        public ActionResult Index()
+        public ActionResult Index(int sayfa=1)
         {
-            var degerler = db.Kategoris.ToList();
+            //ToPagedList(BaslangicParametresi,kaçtanegösterilecek);
+            var degerler = db.Kategoris.ToList().ToPagedList(sayfa,4);
             return View(degerler);
         }
         //Sayfa yuklendigi zaman calisacak metod
