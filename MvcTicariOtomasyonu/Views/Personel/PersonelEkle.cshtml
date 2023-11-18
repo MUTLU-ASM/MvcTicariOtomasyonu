@@ -6,18 +6,22 @@
 <br />
 <h2>Yeni Personel</h2>
 <br />
-<form class="form-group" method="post">
-    @Html.LabelFor(x => x.ad, "Ad")
-    @Html.TextBoxFor(x => x.ad, new { @class = "form-control" })
-    <br />
-    @Html.LabelFor(x => x.soyad, "Soyad")
-    @Html.TextBoxFor(x => x.soyad, new { @class = "form-control" })
-    <br />
-    @Html.LabelFor(x => x.gorsel, "Görsel")
-    @Html.TextBoxFor(x => x.gorsel, new { @class = "form-control" })
-    <br />
-    @Html.LabelFor(x => x.departman, "Departman")
-    @Html.DropDownListFor(x => x.departmanId, (List<SelectListItem>)ViewBag.dgr,new { @class = "form-control" })
-    <br />
-    <button class="btn btn-info">Kaydet</button>
-</form>
+@using (Html.BeginForm("PersonelEkle", "Personel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <form class="form-group" method="post">
+        @Html.LabelFor(x => x.ad, "Ad")
+        @Html.TextBoxFor(x => x.ad, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.soyad, "Soyad")
+        @Html.TextBoxFor(x => x.soyad, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(x => x.gorsel, "Görsel") <br />   
+        @*@Html.TextBoxFor(x => x.gorsel, new { @class = "form-control" })*@
+        <input type="file" name="gorsel" />
+        <br /> <br />
+        @Html.LabelFor(x => x.departman, "Departman")
+        @Html.DropDownListFor(x => x.departmanId, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-info">Kaydet</button>
+    </form>
+    }

@@ -1,6 +1,7 @@
 ﻿using MvcTicariOtomasyonu.Models.Siniflar;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -32,6 +33,14 @@ namespace MvcTicariOtomasyonu.Controllers
         [HttpPost]
         public ActionResult PersonelEkle(Personel p)
         {
+            if (Request.Files.Count>0)
+            {
+                string dosyaAdi=Path.GetFileName(Request.Files[0].FileName);
+                string uzanti = Path.GetExtension(Request.Files[0].FileName);
+                string yol = "~/Image/"+dosyaAdi+uzanti;
+                Request.Files[0].SaveAs(Server.MapPath(yol));
+                p.gorsel="/Image/"+dosyaAdi+uzanti;
+            }
             db.Personels.Add(p);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -51,6 +60,14 @@ namespace MvcTicariOtomasyonu.Controllers
         }
         public ActionResult PersonelGuncelle(Personel p)
         {
+            if (Request.Files.Count > 0)
+            {
+                string dosyaAdi = Path.GetFileName(Request.Files[0].FileName);
+                string uzanti = Path.GetExtension(Request.Files[0].FileName);
+                string yol = "~/Image/" + dosyaAdi + uzanti;
+                Request.Files[0].SaveAs(Server.MapPath(yol));
+                p.gorsel = "/Image/" + dosyaAdi + uzanti;
+            }
             var deger = db.Personels.Find(p.id);
             deger.ad = p.ad;
             deger.soyad = p.soyad;
