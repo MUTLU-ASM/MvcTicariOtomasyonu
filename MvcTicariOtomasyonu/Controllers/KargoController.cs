@@ -11,14 +11,31 @@ namespace MvcTicariOtomasyonu.Controllers
     {
         // GET: Kargo
         Context db = new Context();
-        public ActionResult Index()
+        public ActionResult Index(string k)
         {
-            var kargolar = db.kargoDetays.ToList();
-            return View(kargolar);
+            var kargolar = from x in db.kargoDetays select x;
+            if (!string.IsNullOrEmpty(k))
+            {
+                kargolar = kargolar.Where(y => y.takipKodu.Contains(k));
+            }
+            return View(kargolar.ToList()); ;
         }
         [HttpGet]
         public ActionResult YeniKargo()
         {
+            Random rnd = new Random();
+            string[] karakterler = { "A", "B", "C", "D" };
+            int k1, k2, k3;
+            k1 = rnd.Next(0, karakterler.Length);
+            k2 = rnd.Next(0, karakterler.Length);
+            k3 = rnd.Next(0, karakterler.Length);
+            int s1, s2, s3;
+            s1 = rnd.Next(100, 1000);
+            s2 = rnd.Next(10, 99);
+            s3 = rnd.Next(10, 99);
+            string kod = s1.ToString() + karakterler[k1] + s2 + karakterler[k2] + s3 + karakterler[3];
+            //Guid randomkey = Guid.NewGuid();
+            ViewBag.tkpKod = kod;
             return View();
         }
         [HttpPost]
@@ -27,6 +44,11 @@ namespace MvcTicariOtomasyonu.Controllers
             db.kargoDetays.Add(k);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult KargoTakip(string id)
+        {
+            var degerler = db.kargoTakips.Where(x => x.takipKodu == id).ToList();
+            return View(degerler);
         }
     }
 }

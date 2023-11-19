@@ -8,7 +8,7 @@
 @using (Html.BeginForm("Index", "Kargo", FormMethod.Get))
 {
     <p>
-        Kargo Takip Numarası: @Html.TextBox("p")
+        Kargo Takip Numarası: @Html.TextBox("k")
         <input type="submit" value="Ara" class="btn btn-success"/>
     </p>
 }
@@ -16,6 +16,7 @@
     <tr>
         <th>Personel</th>
         <th>Alıcı</th>
+        <th>Takip Kodu</th>
         <th>Tarih</th>
         <th>Detay</th>
     </tr>
@@ -24,8 +25,9 @@
         <tr>
             <td>@x.personel</td>
             <td>@x.alici</td>
+            <td>@x.takipKodu</td>
             <td>@x.tarih.ToShortDateString()</td>
-            <td><a href="/Departman/DepartmanDetay/@x.id" class="btn btn-warning">Detay</a></td>
+            <td><a href="/Kargo/KargoTakip/@x.takipKodu" class="btn btn-warning">Detay</a></td>
         </tr>
     }
 </table>

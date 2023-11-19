@@ -9,7 +9,7 @@
 <br />
 <form class="form-group" method="post">
     @Html.LabelFor(x => x.takipKodu, "Takip Kodu")
-    @Html.TextBoxFor(x => x.takipKodu, new { @class = "form-control" })
+    <input type="text" name="takipKodu" value="@ViewBag.tkpKod" class="form-control" readonly />
     <br />
     @Html.LabelFor(x => x.personel, "Personel")
     @Html.TextBoxFor(x => x.personel, new { @class = "form-control" })
