@@ -35,10 +35,77 @@ namespace MvcTicariOtomasyonu.Controllers
             var grafik = new Chart(1000, 1000);
             grafik.AddTitle("Stoklar").AddSeries(
                 chartType: "Pie",
-                name: "Stok", 
+                name: "Stok",
                 xValue: xvalue,
                 yValues: yvalue);
             return File(grafik.ToWebImage().GetBytes(), "image/jpeg");
+        }
+
+        public ActionResult Index4()
+        {
+            return View();
+        }
+        public ActionResult VisualizeUrunResult()
+        {
+            return Json(UrunListesi(), JsonRequestBehavior.AllowGet);
+        }
+        public List<sinif1> UrunListesi()
+        {
+            List<sinif1> snf = new List<sinif1>();
+            snf.Add(new sinif1()
+            {
+                urunad = "Bilgisayar",
+                stok = 120
+            });
+            snf.Add(new sinif1()
+            {
+                urunad = "Beyaz Eşya",
+                stok = 150
+            }); snf.Add(new sinif1()
+            {
+                urunad = "Mobilya",
+                stok = 70
+            }); snf.Add(new sinif1()
+            {
+                urunad = "Küçük Ev Aletleri",
+                stok = 180
+            }); snf.Add(new sinif1()
+            {
+                urunad = "Mobil Cihazlar",
+                stok = 90
+            });
+            return snf;
+        }
+
+        public ActionResult Index5()
+        {
+            return View();
+        }
+        public ActionResult VisualizeUrunResult2()
+        { 
+            return Json(UrunListesi2(), JsonRequestBehavior.AllowGet);
+        }
+        public List<sinif2> UrunListesi2()
+        {
+            List<sinif2> snf = new List<sinif2>();
+            using (var context = new Context())
+            {
+                snf=db.Uruns.Select(x=>new sinif2
+                {
+                    urunAd=x.ad,
+                    urunStok=x.stok
+                }).ToList();
+            }
+            return snf;
+        }
+
+        public ActionResult Index6()
+        {
+            return View();
+        }
+        public ActionResult Index7()
+        {
+            return View();
         }
     }
 }
