@@ -64,21 +64,5 @@ namespace MvcTicariOtomasyonu.Controllers
             ViewBag.dc = cr;
             return View(degerler);
         }
-
-        public ActionResult GelenMesajlar()
-        {
-            var degerler = db.Mesajlars.ToList();
-            return View(degerler);
-        }
-        [HttpGet]
-        public ActionResult YeniMesaj()
-        {
-            return View();
-        }
-        //[HttpPost]
-        //public ActionResult YeniMesaj()
-        //{
-        //    return View();
-        //}
     }
 }

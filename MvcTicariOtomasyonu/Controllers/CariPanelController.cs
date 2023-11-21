@@ -26,5 +26,22 @@ namespace MvcTicariOtomasyonu.Controllers
             var degerler = db.SatisHarekets.Where(x => x.id == id).ToList();
             return View(degerler);
         }
+
+        public ActionResult GelenMesajlar()
+        {
+            var cariMail = (string)Session["mail"];
+            var degerler = db.Mesajlars.Where(x=>x.alici==cariMail).ToList();
+            return View(degerler);
+        }
+        [HttpGet]
+        public ActionResult YeniMesaj()
+        {
+            return View();
+        }
+        //[HttpPost]
+        //public ActionResult YeniMesaj()
+        //{
+        //    return View();
+        //}
     }
 }
