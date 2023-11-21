@@ -13,9 +13,9 @@ namespace MvcTicariOtomasyonu.Controllers
     {
         // GET: Cari
         Context db = new Context();
-        public ActionResult Index(int sayfa=1)
+        public ActionResult Index(int sayfa = 1)
         {
-            var degerler = db.currents.Where(x=>x.durum==true).ToList().ToPagedList(sayfa,8);
+            var degerler = db.currents.Where(x => x.durum == true).ToList().ToPagedList(sayfa, 8);
             return View(degerler);
         }
         [HttpGet]
@@ -29,7 +29,7 @@ namespace MvcTicariOtomasyonu.Controllers
             c.durum = true;
             db.currents.Add(c);
             db.SaveChanges();
-            return RedirectToAction("Index");        
+            return RedirectToAction("Index");
         }
         public ActionResult CariSil(int id)
         {
@@ -41,7 +41,7 @@ namespace MvcTicariOtomasyonu.Controllers
         public ActionResult CariGetir(int id)
         {
             var deger = db.currents.Find(id);
-            return View("CariGetir",deger);
+            return View("CariGetir", deger);
         }
         public ActionResult CariGuncelle(Current c)
         {
@@ -64,5 +64,21 @@ namespace MvcTicariOtomasyonu.Controllers
             ViewBag.dc = cr;
             return View(degerler);
         }
+
+        public ActionResult GelenMesajlar()
+        {
+            var degerler = db.Mesajlars.ToList();
+            return View(degerler);
+        }
+        [HttpGet]
+        public ActionResult YeniMesaj()
+        {
+            return View();
+        }
+        //[HttpPost]
+        //public ActionResult YeniMesaj()
+        //{
+        //    return View();
+        //}
     }
 }
