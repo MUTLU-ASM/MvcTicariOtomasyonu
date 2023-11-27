@@ -31,7 +31,30 @@ namespace MvcTicariOtomasyonu.Controllers
         {
             var cariMail = (string)Session["mail"];
             var degerler = db.Mesajlars.Where(x=>x.alici==cariMail).ToList();
+            var gelenSayisi=db.Mesajlars.Count(x=>x.alici==cariMail).ToString();
+            ViewBag.gelenMesaj = gelenSayisi;
+            var gidenSayisi = db.Mesajlars.Count(x => x.gonderici == cariMail).ToString();
+            ViewBag.gidenMesaj = gidenSayisi;
             return View(degerler);
+        }
+        public ActionResult GidenMesajlar()
+        {
+            var cariMail = (string)Session["mail"];
+            var degerler = db.Mesajlars.Where(x => x.gonderici == cariMail).ToList();
+            var gidenSayisi = db.Mesajlars.Count(x => x.gonderici == cariMail).ToString();
+            ViewBag.gidenMesaj = gidenSayisi;
+            var gelenSayisi = db.Mesajlars.Count(x => x.alici == cariMail).ToString();
+            ViewBag.gelenMesaj = gelenSayisi;
+            return View(degerler);
+        }
+        public ActionResult MesajDetay()
+        {
+            var cariMail = (string)Session["mail"];
+            var gidenSayisi = db.Mesajlars.Count(x => x.gonderici == cariMail).ToString();
+            ViewBag.gidenMesaj = gidenSayisi;
+            var gelenSayisi = db.Mesajlars.Count(x => x.alici == cariMail).ToString();
+            ViewBag.gelenMesaj = gelenSayisi;
+            return View();
         }
         [HttpGet]
         public ActionResult YeniMesaj()
