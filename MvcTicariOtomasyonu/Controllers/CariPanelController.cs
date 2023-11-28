@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace MvcTicariOtomasyonu.Controllers
 {
@@ -19,6 +20,7 @@ namespace MvcTicariOtomasyonu.Controllers
             ViewBag.m = cariMail;
             return View(degerler);
         }
+        [Authorize]
         public ActionResult Siparislerim()
         {
             var cariMail = (string)Session["mail"];
@@ -26,17 +28,18 @@ namespace MvcTicariOtomasyonu.Controllers
             var degerler = db.SatisHarekets.Where(x => x.id == id).ToList();
             return View(degerler);
         }
-
+        [Authorize]
         public ActionResult GelenMesajlar()
         {
             var cariMail = (string)Session["mail"];
-            var degerler = db.Mesajlars.Where(x => x.alici == cariMail).OrderByDescending(x=>x.id).ToList();
+            var degerler = db.Mesajlars.Where(x => x.alici == cariMail).OrderByDescending(x => x.id).ToList();
             var gelenSayisi = db.Mesajlars.Count(x => x.alici == cariMail).ToString();
             ViewBag.gelenMesaj = gelenSayisi;
             var gidenSayisi = db.Mesajlars.Count(x => x.gonderici == cariMail).ToString();
             ViewBag.gidenMesaj = gidenSayisi;
             return View(degerler);
         }
+        [Authorize]
         public ActionResult GidenMesajlar()
         {
             var cariMail = (string)Session["mail"];
@@ -47,6 +50,7 @@ namespace MvcTicariOtomasyonu.Controllers
             ViewBag.gelenMesaj = gelenSayisi;
             return View(degerler);
         }
+        [Authorize]
         public ActionResult MesajDetay(int id)
         {
             var degerler = db.Mesajlars.Where(x => x.id == id).ToList();
@@ -76,6 +80,25 @@ namespace MvcTicariOtomasyonu.Controllers
             db.Mesajlars.Add(m);
             db.SaveChanges();
             return View();
+        }
+        [Authorize]
+        public ActionResult KargoTakip(string k)
+        {
+            var kargolar = from x in db.kargoDetays select x;
+            kargolar = kargolar.Where(y => y.takipKodu.Contains(k));
+
+            return View(kargolar.ToList()); ;
+        }
+        public ActionResult CariKargoTakip(string id)
+        {
+            var degerler = db.kargoTakips.Where(x => x.takipKodu == id).ToList();
+            return View(degerler);
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index", "Login");
         }
     }
 }
