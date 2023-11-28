@@ -239,6 +239,7 @@
     <Content Include="AdminLTE-3.2.0\dist\img\credit\american-express.png" />
     <Content Include="AdminLTE-3.2.0\dist\img\credit\cirrus.png" />
     <Content Include="AdminLTE-3.2.0\dist\img\credit\mastercard.png" />
+    <Content Include="AdminLTE-3.2.0\dist\img\mesaj-icon.png" />
     <Content Include="AdminLTE-3.2.0\dist\img\credit\paypal.png" />
     <Content Include="AdminLTE-3.2.0\dist\img\credit\paypal2.png" />
     <Content Include="AdminLTE-3.2.0\dist\img\credit\visa.png" />
@@ -253,6 +254,7 @@
     <Content Include="AdminLTE-3.2.0\dist\img\prod-3.jpg" />
     <Content Include="AdminLTE-3.2.0\dist\img\prod-4.jpg" />
     <Content Include="AdminLTE-3.2.0\dist\img\prod-5.jpg" />
+    <Content Include="AdminLTE-3.2.0\dist\img\user.png" />
     <Content Include="AdminLTE-3.2.0\dist\img\user1-128x128.jpg" />
     <Content Include="AdminLTE-3.2.0\dist\img\user2-160x160.jpg" />
     <Content Include="AdminLTE-3.2.0\dist\img\user3-128x128.jpg" />
@@ -3347,6 +3349,7 @@
     <Content Include="Views\CariPanel\YeniMesaj.cshtml" />
     <Content Include="Views\CariPanel\KargoTakip.cshtml" />
     <Content Include="Views\CariPanel\CariKargoTakip.cshtml" />
+    <Content Include="Views\CariPanel\PartialAyarlar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
