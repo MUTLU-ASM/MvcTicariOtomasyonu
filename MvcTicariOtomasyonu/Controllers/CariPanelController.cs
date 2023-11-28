@@ -16,8 +16,16 @@ namespace MvcTicariOtomasyonu.Controllers
         public ActionResult Index()
         {
             var cariMail = (string)Session["mail"];
-            var degerler = db.currents.FirstOrDefault(x => x.mail == cariMail);
+            var degerler = db.currents.Where(x => x.mail == cariMail).ToList();
             ViewBag.m = cariMail;
+            var mailID = db.currents.Where(x => x.mail == cariMail).Select(y => y.id).FirstOrDefault();
+            ViewBag.mailID = mailID;
+            var toplamSatis = db.SatisHarekets.Where(x => x.currentId == mailID).Count();
+            ViewBag.toplamSatis = toplamSatis;
+            var toplamTutar = db.SatisHarekets.Where(x => x.currentId == mailID).Sum(y => y.toplamTutar);
+            ViewBag.toplamTutar = toplamTutar;
+            var toplamUrun = db.SatisHarekets.Where(x => x.currentId == mailID).Sum(y => y.adet);
+            ViewBag.toplamUrun = toplamUrun;
             return View(degerler);
         }
         [Authorize]
