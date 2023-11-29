@@ -3350,6 +3350,7 @@
     <Content Include="Views\CariPanel\KargoTakip.cshtml" />
     <Content Include="Views\CariPanel\CariKargoTakip.cshtml" />
     <Content Include="Views\CariPanel\PartialAyarlar.cshtml" />
+    <Content Include="Views\CariPanel\PartialDuyuru.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

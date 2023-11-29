@@ -112,7 +112,15 @@ namespace MvcTicariOtomasyonu.Controllers
         }
         public PartialViewResult PartialAyarlar()
         {
-            return PartialView();
+            var cariMail = (string)Session["mail"];
+            var id = db.currents.Where(x => x.mail == cariMail).Select(y => y.id).FirstOrDefault();
+            var cariBul = db.currents.Find(id);
+            return PartialView("PartialAyarlar",cariBul);
+        }      
+        public PartialViewResult PartialDuyuru()
+        {
+            var veriler = db.Mesajlars.Where(x => x.gonderici == "admin").OrderByDescending(x=>x.tarih).ToList();
+            return PartialView(veriler);
         }
     }
 }
