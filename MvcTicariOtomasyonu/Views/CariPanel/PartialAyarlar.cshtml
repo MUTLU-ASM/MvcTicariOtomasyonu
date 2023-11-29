@@ -1,9 +1,9 @@
 ﻿@model MvcTicariOtomasyonu.Models.Siniflar.Current
 
-@using (Html.BeginForm("PartialAyarlar", "CariPanel", FormMethod.Post)) {
+@using (Html.BeginForm("CariBilgiGuncelle", "CariPanel", FormMethod.Post)) {
 
 <form class="form-horizontal">
-
+    @Html.HiddenFor(x=>x.id)
     <div class="form-group row">
 
         <label for="inputName" class="col-sm-2 col-form-label">Ad</label>

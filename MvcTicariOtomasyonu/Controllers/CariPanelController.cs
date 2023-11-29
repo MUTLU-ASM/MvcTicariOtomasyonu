@@ -122,5 +122,15 @@ namespace MvcTicariOtomasyonu.Controllers
             var veriler = db.Mesajlars.Where(x => x.gonderici == "admin").OrderByDescending(x=>x.tarih).ToList();
             return PartialView(veriler);
         }
+        public ActionResult CariBilgiGuncelle(Current c)
+        {
+            var cari = db.currents.Find(c.id);
+            cari.ad = c.ad;
+            cari.soyad = c.soyad;
+            cari.sifre = c.sifre;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
     }
 }
