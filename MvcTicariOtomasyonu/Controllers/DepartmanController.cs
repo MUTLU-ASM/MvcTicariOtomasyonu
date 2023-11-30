@@ -7,6 +7,7 @@ using MvcTicariOtomasyonu.Models.Siniflar;
 
 namespace MvcTicariOtomasyonu.Controllers
 {
+    [Authorize]
     public class DepartmanController : Controller
     {
         // GET: Departman
