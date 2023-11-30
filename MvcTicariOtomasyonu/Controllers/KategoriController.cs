@@ -14,10 +14,10 @@ namespace MvcTicariOtomasyonu.Controllers
         // GET: Kategori
 
         Context db = new Context();
-        public ActionResult Index(int sayfa=1)
+        public ActionResult Index(int sayfa = 1)
         {
             //ToPagedList(BaslangicParametresi,kaçtanegösterilecek);
-            var degerler = db.Kategoris.ToList().ToPagedList(sayfa,4);
+            var degerler = db.Kategoris.ToList().ToPagedList(sayfa, 4);
             return View(degerler);
         }
         //Sayfa yuklendigi zaman calisacak metod
@@ -34,7 +34,7 @@ namespace MvcTicariOtomasyonu.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public  ActionResult KategoriSil(int id)
+        public ActionResult KategoriSil(int id)
         {
             var deger = db.Kategoris.Find(id);
             db.Kategoris.Remove(deger);
@@ -44,7 +44,7 @@ namespace MvcTicariOtomasyonu.Controllers
         public ActionResult KategoriGetir(int id)
         {
             var deger = db.Kategoris.Find(id);
-            return View("KategoriGetir",deger);
+            return View("KategoriGetir", deger);
         }
         public ActionResult KategoriGuncelle(Kategori k)
         {
@@ -52,6 +52,26 @@ namespace MvcTicariOtomasyonu.Controllers
             deger.ad = k.ad;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult Deneme()
+        {
+            Class1 cs = new Class1();
+            cs.kategoriler = new SelectList(db.Kategoris, "id", "ad");
+            cs.urunler = new SelectList(db.Uruns, "id", "ad");
+            return View(cs);
+        }
+        public JsonResult UrunGetir(int p)
+        {
+            var urunListesi = (from x in db.Uruns
+                               join y in db.Kategoris
+                               on x.kategori.id equals y.id
+                               where x.kategori.id == p
+                               select new
+                               {
+                                   Text = x.ad,
+                                   Value = x.id.ToString()
+                               }).ToList();
+            return Json(urunListesi, JsonRequestBehavior.AllowGet);
         }
     }
 }
