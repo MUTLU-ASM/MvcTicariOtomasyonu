@@ -17,6 +17,7 @@ namespace MvcTicariOtomasyonu.Controllers
             var degerler = db.Departmen.Where(x => x.durum == true).ToList();
             return View(degerler);
         }
+        [Authorize(Roles ="A")]
         [HttpGet]
         public ActionResult DepartmanEkle()
         {
