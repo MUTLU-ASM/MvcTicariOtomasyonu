@@ -31,7 +31,7 @@ namespace MvcTicariOtomasyonu.Controllers
         public ActionResult FaturaGetir(int id)
         {
             var deger = db.Faturalars.Find(id);
-            return View("FaturaGetir",deger);
+            return View("FaturaGetir", deger);
         }
         public ActionResult FaturaGuncelle(Faturalar f)
         {
@@ -70,20 +70,30 @@ namespace MvcTicariOtomasyonu.Controllers
             cs.deger2 = db.FaturaKalems.ToList();
             return View(cs);
         }
-        public ActionResult FaturaKaydet(string seriNo,string sıraNo , DateTime tarih ,string vergiDairesi , string saat, string teslimVeren,string teslimAlan,string toplam, FaturaKalem[] kalemler)
+        public ActionResult FaturaKaydet(string seriNo, string sıraNo, DateTime tarih, string vergiDairesi, string saat, string teslimVeren, string teslimAlan, string toplam, FaturaKalem[] kalemler)
         {
             Faturalar f = new Faturalar();
             f.seriNo = seriNo;
             f.sıraNo = sıraNo;
             f.tarih = tarih;
             f.vergiDairesi = vergiDairesi;
-            f.saat=saat;
+            f.saat = saat;
             f.teslimVeren = teslimVeren;
             f.teslimAlan = teslimAlan;
             f.toplam = decimal.Parse(toplam);
             db.Faturalars.Add(f);
+            foreach (var x in kalemler)
+            {
+                FaturaKalem fk = new FaturaKalem();
+                fk.aciklama = x.aciklama;
+                fk.birimFiyat = x.birimFiyat;
+                fk.faturalarId = x.id;
+                fk.miktar = x.miktar;
+                fk.tutar = x.tutar;
+                db.FaturaKalems.Add(fk);
+            }
             db.SaveChanges();
-            return Json("İşlem Başarılı",JsonRequestBehavior.AllowGet);
+            return Json("İşlem Başarılı", JsonRequestBehavior.AllowGet);
         }
     }
 }
