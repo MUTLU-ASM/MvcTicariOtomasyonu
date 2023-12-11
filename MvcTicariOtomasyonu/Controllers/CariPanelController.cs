@@ -28,6 +28,8 @@ namespace MvcTicariOtomasyonu.Controllers
             ViewBag.toplamUrun = toplamUrun;
             var adSoyad = db.currents.Where(x => x.mail == cariMail).Select(y => y.ad + " " + y.soyad).FirstOrDefault();
             ViewBag.adSoyad = adSoyad;
+            var sehir = db.currents.Where(x => x.mail == cariMail).Select(y => y.sehir).FirstOrDefault();
+            ViewBag.sehir = sehir;
             return View(degerler);
         }
         [Authorize]
